@@ -17,8 +17,28 @@ class FeedbackController extends Controller
             FeedBackModel::create($data);
             return response()->json(['status' => 'success', 'message'=> 'Se ha registrado su información.'], 201);
         } catch(\Exception $e){
-            // return response()->json(['status' =>'error', 'message' => 'En este momento no podemos atender su solicitud.'], 500);
-            return response()->json(['status' =>'error', 'message' => $e->getMessage()], 500);
+            return response()->json(['status' =>'error', 'message' => 'En este momento no podemos atender su solicitud.'], 500);
         }
     }
+
+    public function listFeedbacks(Request $request)
+    {
+        try  {
+            $feedbacks = FeedBackModel::query()
+                    ->where('status', 1)
+                    ->orderBy('date', 'desc');        
+
+            $paginatedFeedbacks = $feedbacks->paginate();
+        } catch(\Exception $e){
+            return response()->json(['status' => 'error', 'message' => 'Ocurrio un error al procesar su solicitud']);
+        }
+
+        return response()->json([
+            "satus" => "success",
+            'draw' => intval($request->draw),
+            'recordsTotal' => $paginatedFeedbacks->total(),
+            'recordsFiltered' => $paginatedFeedbacks->total(),
+            'data' => $paginatedFeedbacks->items(),
+        ], 200);
+    }   
 }

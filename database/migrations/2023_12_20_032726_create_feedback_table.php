@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
             $table->date('date');
+            $table->boolean('status')->default(1);
             $table->string('user_name', 255);
             $table->string('email', 400)->nullable();
             $table->integer('phone')->nullable();
