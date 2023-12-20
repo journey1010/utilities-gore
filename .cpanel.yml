@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/gorel/public_html/utilities.regionloreto.gob.pe
-    - /bin/rsync -a --exclude 'index.php' /home/gorel/repositories/web_utilities_gorel/public/ $DEPLOYPATH
-    - export DEPLOYPATH=/home/gorel/web_utilities_gorel/
+    - export DEPLOYPATH=/home/aywsolution/public_html/somosperu.aywsolution.com
+    - /bin/rsync -a --exclude 'index.php' /home/aywsolution/repositories/somosperu-wb/public/ $DEPLOYPATH
+    - export DEPLOYPATH=/home/aywsolution/web_somosperu/
     - /bin/rsync -a --exclude 'public/' * $DEPLOYPATH
