@@ -73,7 +73,7 @@ class Feedback extends FormRequest
             'codeCountry.min' => 'El código del país debe tener al menos 2 caracteres.',
             'codeCountry.max' => 'El código del país no debe superar los 4 caracteres.',
             'com_design.max' => 'Su comentario sobre el diseño del portal no debe superar los 700 caracteres.',
-            'com_content.required' => 'Debe ingresar su un comentario sobre el contenido del portal.',
+            'com_content.required' => 'Debe ingresar un comentario sobre el contenido del portal.',
             'com_funtionallity.max' => 'Su comentario sobre la funcionalidad no debe superar los 700 caracteres.',
             'com_ease_use.required' => 'Debe ingresar un comentario sobre la facilidad de uso del portal.',
             'com_suggest.max' => 'Su sugerencia no debe superar los 500 caracteres.',
