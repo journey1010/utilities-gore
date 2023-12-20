@@ -2,6 +2,6 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/gorel/public_html/utilities.regionloreto.gob.pe
-    - /bin/rsync -a --exclude 'index.php' /home/gorel/repositories/web_utilities_gorel/public/ $DEPLOYPATH
+    - /bin/rsync -a --exclude 'index.php' /home/gorel/repositories/utilities-gore/public/ $DEPLOYPATH
     - export DEPLOYPATH=/home/gorel/web_utilities_gorel/
     - /bin/rsync -a --exclude 'public/' * $DEPLOYPATH
