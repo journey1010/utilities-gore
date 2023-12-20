@@ -22,11 +22,18 @@ class Feedback extends FormRequest
 
     protected function failedValidation(Validator $validator)
     {
+        $errors = $validator->errors()->getMessages();
+
+        $firstErrors = [];
+        foreach ($errors as $field => $messages) {
+            $firstErrors[$field] = $messages[0];
+        }
+    
         $jsonResponse = new JsonResponse([
             'status' => 'error',
-            'message' => $validator->errors()
-        ], 422); // 422 Unprocessable Entity
-
+            'message' => $firstErrors
+        ], 422); 
+    
         throw new HttpResponseException($jsonResponse);
     }
 
