@@ -36,11 +36,10 @@ class MaestrosAptoModel extends Model
 
     public static function searchByName($name) 
     {
-        $maestro = MaestrosAptoModel::where('full_name','like', "%$name%")->first();
+        $maestro = MaestrosAptoModel::where('full_name','like', "%$name%")->get();
         if($maestro){
             throw new Exception('No se encontro ninguna coincidencia');
         }
-
         return $maestro;
     }
 }

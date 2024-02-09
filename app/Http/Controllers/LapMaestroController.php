@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\LapMaestros\LapMaestroRequest;
+use App\Http\Requests\LapMaestros\SearchByNameRequest;
+
 use App\Models\LapMaestros\MaestrosAptoModel as Maestro;
+use App\Models\LapMaestros\LapSerieModel as Serie;
 
 class LapMaestroController extends Controller
 {
@@ -33,8 +35,18 @@ class LapMaestroController extends Controller
         }
     }
 
-    public function searhByName()
+    public function searhByName(SearchByNameRequest $request)
     {
-        
+        try {
+            $maestro = Serie::searhByName($request->fullName);
+            return response()->json([
+                ''
+            ]);
+        }catch(\Exception $e){
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 }
