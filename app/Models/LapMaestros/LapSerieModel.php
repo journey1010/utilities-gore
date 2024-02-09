@@ -10,10 +10,12 @@ class LapSerieModel extends Model
     use HasFactory;
 
     public $table = 'laptops_data';
+    public $timestamps  = false;
     protected $connection = 'utilities';
 
+
     protected $fillable = [
-        'serie',
         'caja',
+        'serie',
     ];
 }

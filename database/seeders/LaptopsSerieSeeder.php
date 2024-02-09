@@ -26,13 +26,24 @@ class LaptopsSerieSeeder extends Seeder
         $spreedsheet = $reader->load($archivo);
         $worksheet = $spreedsheet->getActiveSheet();
         $highestRow = $worksheet->getHighestRow();
-        $highestColumn = Coordinate::columnIndexFromString(self::$maxColumn);
+        $highestColumn = Coordinate::columnIndexFromString($this->maxColumn);
 
         for($row = 2; $row <= $highestRow; $row++){
-            for($col = 1; $row <= $highestColumn; $col++){
+            for($col = 1; $col <= $highestColumn; $col++){
                 $value  = $worksheet->getCell([$col, $row])->getValue();
-                
+                switch($col){
+                    case 1:
+                        $caja = $value;
+                        break;
+                    case 2:
+                        $serie = $value;
+                        break;
+                }
             }
+            Lap::create([
+                'caja' => $caja,
+                'serie' => $serie
+            ]);
         }
     }
 }
