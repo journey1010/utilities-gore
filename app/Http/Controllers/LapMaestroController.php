@@ -27,7 +27,7 @@ class LapMaestroController extends Controller
                     'full_name' => $maestro->full_name,
                     'provincia' => $maestro->provincia,
                     'ie' => $maestro->ie,
-                    'Recibio Laptop' => ($maestro->is_laptop_received == 1) ? 'Sí' : 'No',
+                    'recibio_laptop' => ($maestro->is_laptop_received == 1) ? 'Sí' : 'No',
                     'Condicion' => $maestro->condicion,
                     'nivel' => $maestro->nivel
                 ]
