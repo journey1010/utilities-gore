@@ -27,7 +27,7 @@ class MaestrosAptoModel extends Model
     public static function searchDNI($dni)
     {
         $maestro = MaestrosAptoModel::where('dni', $dni)->first();
-        if(!$dni){
+        if(!$maestro){
             throw new Exception('No se encontro el número de DNI');
         }
         return $maestro;
