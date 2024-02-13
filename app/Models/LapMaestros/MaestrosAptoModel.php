@@ -36,12 +36,18 @@ class MaestrosAptoModel extends Model
     public static function searchByName($name) 
     {
         $maestroData = MaestrosAptoModel::where('full_name', 'like', "%$name%")
-                    ->select('id', 'full_name', 'provincia', 'ie', 'is_laptop_received', 'condicion', 'nivel')
-                    ->get();
-        if(!$maestroData){
-            throw new Exception('No se encontro ninguna coincidencia');
+                ->select('id', 'full_name', 'provincia', 'ie', 'is_laptop_received', 'condicion', 'nivel')
+                ->get();
+        
+        if ($maestroData->count() === 0) {
+            throw new Exception('No se encontró ninguna coincidencia');
         }
-        foreach ($maestroData as $m) {
+        
+        $maestrosArray = [];
+        
+        // Si solo hay un resultado, no será una colección
+        if ($maestroData->count() === 1) {
+            $m = $maestroData->first();
             $maestrosArray[] = [
                 'id' => $m->id,
                 'full_name' => $m->full_name,
@@ -51,7 +57,21 @@ class MaestrosAptoModel extends Model
                 'Condicion' => $m->condicion,
                 'nivel' => $m->nivel
             ];
+        } else {
+            foreach ($maestroData as $m) {
+                $maestrosArray[] = [
+                    'id' => $m->id,
+                    'full_name' => $m->full_name,
+                    'provincia' => $m->provincia,
+                    'ie' => $m->ie,
+                    'Recibio Laptop' => ($m->is_laptop_received == 1) ? 'Sí' : 'No',
+                    'Condicion' => $m->condicion,
+                    'nivel' => $m->nivel
+                ];
+            }
         }
+        
         return $maestrosArray;
+    
     }
 }
