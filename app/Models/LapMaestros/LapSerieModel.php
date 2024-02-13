@@ -17,5 +17,6 @@ class LapSerieModel extends Model
     protected $fillable = [
         'caja',
         'serie',
+        'condicion'
     ];
 }

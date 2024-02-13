@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('condicion')->nullable();
             $table->string('nivel')->nullable();
             $table->string('distrito')->nullable();
-            $table->boolean('is_laptop_received')->default(1);
+            $table->boolean('is_laptop_received')->default(0);
             $table->timestamps();
         });
     }

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('serie');
             $table->string('caja');
+            $table->string('condicion');
+            $table->boolean('isFree')->default(1);
         });
     }
 

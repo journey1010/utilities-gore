@@ -11,7 +11,7 @@ use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
 class LaptopsSerieSeeder extends Seeder
 {
     protected $minRow = 2;
-    protected string $maxColumn = 'G'; 
+    protected string $maxColumn = 'C'; 
 
     /**
      * Run the database seeds.
@@ -20,8 +20,9 @@ class LaptopsSerieSeeder extends Seeder
     {    
         $caja = '';
         $serie = '';
+        $condicion = '';
 
-        $archivo = storage_path('app/docs/2023/Cambiar nombre laptop.xlsx');
+        $archivo = storage_path('app/docs/2023/laptops.xlsx');
         $reader = IOFactory::createReader('Xlsx');
         $spreedsheet = $reader->load($archivo);
         $worksheet = $spreedsheet->getActiveSheet();
@@ -38,11 +39,15 @@ class LaptopsSerieSeeder extends Seeder
                     case 2:
                         $serie = $value;
                         break;
+                    case 3:
+                        $condicion = $value;
+                        break;
                 }
             }
             Lap::create([
                 'caja' => $caja,
-                'serie' => $serie
+                'serie' => $serie,
+                'condicion' => $condicion
             ]);
         }
     }
