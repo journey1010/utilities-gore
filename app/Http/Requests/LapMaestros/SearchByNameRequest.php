@@ -41,7 +41,7 @@ class SearchByNameRequest extends FormRequest
         ];
     }
 
-    public function message()
+    public function messages()
     {   
         return [
             'fullName.required' => 'Ingrese un nombre',

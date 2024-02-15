@@ -44,7 +44,7 @@ class StoreRequest extends FormRequest
         ];
     }
 
-    public function message()
+    public function messages()
     {  
         return [
             'idMaestro.required' => 'ID de maestro no proporcionado',
