@@ -54,7 +54,7 @@ class MaestrosAptoModel extends Model
                 'full_name' => $m->full_name,
                 'provincia' => $m->provincia,
                 'ie' => $m->ie,
-                'RecibioLaptop' => ($m->is_laptop_received == 1) ? 'Sí' : 'No',
+                'recibio_laptop' => ($m->is_laptop_received == 1) ? 'Sí' : 'No',
                 'Condicion' => $m->condicion,
                 'nivel' => $m->nivel
             ];
@@ -66,7 +66,7 @@ class MaestrosAptoModel extends Model
                     'full_name' => $m->full_name,
                     'provincia' => $m->provincia,
                     'ie' => $m->ie,
-                    'RecibioLaptop' => ($m->is_laptop_received == 1) ? 'Sí' : 'No',
+                    'recibio_laptop' => ($m->is_laptop_received == 1) ? 'Sí' : 'No',
                     'Condicion' => $m->condicion,
                     'nivel' => $m->nivel
                 ];
