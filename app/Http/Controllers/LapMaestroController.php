@@ -24,6 +24,7 @@ class LapMaestroController extends Controller
                 'status' => 'success',
                 'data' => [
                     'id' => $maestro->id,
+                    'dni' => $maestro->dni,
                     'full_name' => $maestro->full_name,
                     'provincia' => $maestro->provincia,
                     'ie' => $maestro->ie,

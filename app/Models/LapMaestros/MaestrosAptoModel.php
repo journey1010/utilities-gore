@@ -36,7 +36,7 @@ class MaestrosAptoModel extends Model
     public static function searchByName($name) 
     {
         $maestroData = MaestrosAptoModel::where('full_name', 'like', "%$name%")
-                ->select('id', 'full_name', 'provincia', 'ie', 'is_laptop_received', 'condicion', 'nivel')
+                ->select('id', 'dni', 'full_name', 'provincia', 'ie', 'is_laptop_received', 'condicion', 'nivel')
                 ->get();
         
         if ($maestroData->count() === 0) {
@@ -50,6 +50,7 @@ class MaestrosAptoModel extends Model
             $m = $maestroData->first();
             $maestrosArray[] = [
                 'id' => $m->id,
+                'dni' => $m->dni,
                 'full_name' => $m->full_name,
                 'provincia' => $m->provincia,
                 'ie' => $m->ie,
@@ -61,6 +62,7 @@ class MaestrosAptoModel extends Model
             foreach ($maestroData as $m) {
                 $maestrosArray[] = [
                     'id' => $m->id,
+                    'dni' => $m->dni,
                     'full_name' => $m->full_name,
                     'provincia' => $m->provincia,
                     'ie' => $m->ie,
