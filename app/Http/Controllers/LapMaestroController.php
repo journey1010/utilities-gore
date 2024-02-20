@@ -12,6 +12,7 @@ use App\Models\LapMaestros\MaestrosAptoModel as Maestro;
 use App\Models\LapMaestros\LapSerieModel as Lap;
 use App\Models\LapMaestros\LapMaestro;
 use Exception;
+use GuzzleHttp\Psr7\Request;
 
 class LapMaestroController extends Controller
 {
@@ -76,6 +77,22 @@ class LapMaestroController extends Controller
                 'status' => 'error',
                 'message' => $e->getMessage(),
              ], 500);
+        }
+    }
+
+    public function laptopsEntregadas()
+    {
+        try {
+            $data  = LapMaestro::laptopsEntregadasProvincia();
+            return response()->json([
+                'status' => 'success',
+                'data' => $data
+            ], 200);
+        } catch (\Exception $e){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No se pudo entener el reporte'
+            ], 500);
         }
     }
 }

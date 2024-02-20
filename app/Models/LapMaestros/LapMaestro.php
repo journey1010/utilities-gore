@@ -2,7 +2,6 @@
 
 namespace App\Models\LapMaestros;
 
-use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -46,5 +45,12 @@ class LapMaestro extends Model
             DB::rollback();
             return false;
         }           
+    }    
+
+    public static function laptopsEntregadasProvincia()
+    {
+        $connectLaps = DB::connection('utilities');
+        $laps = $connectLaps->select('call laptopEntregadas()');
+        return $laps;
     }
 }
