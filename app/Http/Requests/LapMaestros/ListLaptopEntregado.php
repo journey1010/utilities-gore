@@ -36,7 +36,8 @@ class ListLaptopEntregado extends FormRequest
     {
         return [
             'itemsPerPage' => 'required|numeric',
-            'page' => 'required|numeric'
+            'page' => 'required|numeric',
+            'provincia' => 'required|string'
         ];
     }
 }
