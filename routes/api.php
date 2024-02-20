@@ -10,4 +10,4 @@ Route::get('/feedback-list', [FeedbackController::class, 'listFeedbacks']);
 Route::get('/maestro/dni', [LapMaestroController::class, 'searchDni']);
 Route::get('/maestro/name', [LapMaestroController::class, 'searchByName']);
 Route::post('/lap-maestro', [LapMaestroController::class, 'storeLapMaestro']);
-Route::get('/', [LapMaestroController::class, 'laptopsEntregadas']);
+Route::get('/dasboard/laptops/entregadas', [LapMaestroController::class, 'laptopsEntregadas']);
