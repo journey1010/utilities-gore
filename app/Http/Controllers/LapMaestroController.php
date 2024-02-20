@@ -103,7 +103,7 @@ class LapMaestroController extends Controller
             return response()->json([
                 'status' => 'success',
                 'data' => $list['data'],
-                'total_pages' => $list['total_items'],
+                'total_items' => $list['total_items'],
             ], 200);
         } catch (\Exception $e){
             return response()->json([
