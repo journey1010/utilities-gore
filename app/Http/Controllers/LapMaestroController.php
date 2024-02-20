@@ -102,7 +102,11 @@ class LapMaestroController extends Controller
             $list = LapMaestro::laptopsEntregadasList($request->page, $request->itemsPerPage, $request->provincia);
             return response()->json([
                 'status' => 'success',
-                $list
+                'data' => $list['data'],
+                'current_page' => $list['current_page'],
+                'total_pages' => $list['total_pages'],
+                'per_pages' => $list['per_pages'],
+                'last_page' => $list['last_page']
             ], 200);
         } catch (\Exception $e){
             return response()->json([
