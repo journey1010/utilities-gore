@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests\LapMaestros\LapMaestroRequest;
 use App\Http\Requests\LapMaestros\SearchByNameRequest;
 use App\Http\Requests\LapMaestros\StoreRequest;
+use App\Http\Requests\LapMaestros\ListLaptopEntregado;
 
 use App\Models\LapMaestros\MaestrosAptoModel as Maestro;
 use App\Models\LapMaestros\LapSerieModel as Lap;
@@ -91,7 +91,23 @@ class LapMaestroController extends Controller
         } catch (\Exception $e){
             return response()->json([
                 'status' => 'error',
-                'message' => 'No se pudo entener el reporte'
+                'message' => 'No se pudo obtener el reporte'
+            ], 500);
+        }
+    }
+
+    public function laptopsEntregadasList (ListLaptopEntregado $request)
+    {
+        try {
+            $list = LapMaestro::laptopsEntregadasList($request->page, $request->itemsPerPage);
+            return response()->json([
+                'status' => 'success',
+                'data' => $list
+            ], 200);
+        } catch (\Exception $e){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'No se pudo obtener el reporte'
             ], 500);
         }
     }

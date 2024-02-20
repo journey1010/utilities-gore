@@ -53,4 +53,22 @@ class LapMaestro extends Model
         $laps = $connectLaps->select('call laptopEntregadas()');
         return $laps;
     }
+
+
+    public static function laptopsEntregadasList(int $page, int $itemsPerPage)
+    {
+        $connection = DB::connection('utilities');
+        $reportData = $connection->table('maestro_apto_lap as m')
+        ->select(
+            'm.provincia as Provincia',
+            $connection->raw('(SELECT COUNT(*) FROM maestro_apto_lap WHERE provincia = m.provincia) AS TotalPorProvincia'),
+            $connection->raw('COUNT(ml.maestro_id) AS Entregado'),
+            $connection->raw('(SELECT COUNT(id) FROM maestro_apto_lap WHERE provincia = m.provincia) - COUNT(ml.maestro_id) AS RestanteProvincia')
+        )
+        ->join('maestros_laptops as ml', 'm.id', '=', 'ml.maestro_id')
+        ->groupBy('m.provincia')
+        ->paginate($itemsPerPage, ['*'], 'page', $page);
+
+        return $reportData;
+    }
 }
