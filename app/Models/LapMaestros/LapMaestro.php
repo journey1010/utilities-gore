@@ -70,6 +70,14 @@ class LapMaestro extends Model
         ->where('m.provincia', 'like',"%$provincia%")
         ->paginate($itemsPerPage, ['*'], 'page', $page);
 
-        return $reportData;
+
+        $response = [
+            'data' => $reportData->items(),
+            'current_page' => $reportData->currentPage(),
+            'total_pages' => $reportData->total(),
+            'per_pages' => $reportData->perPage(),
+            'last_page' => $reportData->lastPage()
+        ];
+        return $response;
     }
 }
