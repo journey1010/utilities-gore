@@ -9,6 +9,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 
 use App\Rules\LapMaestros\UniqueMaestroLaptopReceived as MaestroStatus;
 use App\Rules\LapMaestros\UniqueSerieLapReceived AS LapStatus; 
+use App\Rules\LapMaestros\invalidateProvincia;
 
 class StoreRequest extends FormRequest
 {
@@ -39,7 +40,7 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'idMaestro' => ['required', 'numeric', new MaestroStatus],
+            'idMaestro' => ['required', 'numeric', new MaestroStatus, new invalidateProvincia],
             'serieLap' => ['required', 'string', new LapStatus],
         ];
     }
