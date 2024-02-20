@@ -11,4 +11,4 @@ Route::get('/maestro/dni', [LapMaestroController::class, 'searchDni']);
 Route::get('/maestro/name', [LapMaestroController::class, 'searchByName']);
 Route::post('/lap-maestro', [LapMaestroController::class, 'storeLapMaestro']);
 Route::get('/dashboard/laptops/entregadas', [LapMaestroController::class, 'laptopsEntregadas']);
-Route::get('/laptops/entregadas', [LapMaestroController::class, 'laptopsEntregadasList']);
+Route::post('/laptops/entregadas', [LapMaestroController::class, 'laptopsEntregadasList']);
