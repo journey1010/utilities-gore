@@ -17,6 +17,7 @@ class invalidateProvincia implements ValidationRule
     {
         $connec = DB::connection('utilities');
         $provincia = $connec->table('maestro_apto_lap')
+            ->where('id', '=', $value)
             ->where('provincia','like', '%RAMON CASTILLA%')
             ->first();
         if($provincia) {

@@ -99,7 +99,7 @@ class LapMaestroController extends Controller
     public function laptopsEntregadasList (ListLaptopEntregado $request)
     {
         try {
-            $list = LapMaestro::laptopsEntregadasList($request->page, $request->itemsPerPage);
+            $list = LapMaestro::laptopsEntregadasList($request->page, $request->itemsPerPage, $request->provincia);
             return response()->json([
                 'status' => 'success',
                 'data' => $list

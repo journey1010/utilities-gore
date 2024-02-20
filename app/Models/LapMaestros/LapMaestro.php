@@ -55,7 +55,7 @@ class LapMaestro extends Model
     }
 
 
-    public static function laptopsEntregadasList(int $page, int $itemsPerPage)
+    public static function laptopsEntregadasList(int $page, int $itemsPerPage, string $provincia)
     {
         $connection = DB::connection('utilities');
         $reportData = $connection->table('maestro_apto_lap as m')
@@ -67,6 +67,7 @@ class LapMaestro extends Model
         ->join('maestros_laptops as ml', 'm.id', '=', 'ml.maestro_id')
         ->join('laptops_data as lap', 'm.id', '=', 'ml.laptop_id')
         ->where('lap.isFree', '=', 0)
+        ->where('m.provincia', 'like',"%$provincia%")
         ->paginate($itemsPerPage, ['*'], 'page', $page);
 
         return $reportData;
