@@ -107,7 +107,7 @@ class LapMaestroController extends Controller
         } catch (\Exception $e){
             return response()->json([
                 'status' => 'error',
-                'message' => $e->getMessage()
+                'message' => 'No se pudo obtener lista'
             ], 500);
         }
     }
