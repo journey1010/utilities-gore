@@ -58,16 +58,16 @@ class LapMaestro extends Model
     public static function laptopsEntregadasList(int $page, int $itemsPerPage, string $provincia)
     {
         $connection = DB::connection('utilities');
-        $reportData = $connection->table('maestro_apto_lap as m')
+        $reportData = $connection->table('maestros_laptops as ml')
         ->select(
             'm.provincia as Provincia',
             'm.full_name as FullName',
             'lap.serie as SerieLap' 
         )
-        ->join('maestros_laptops as ml', 'm.id', '=', 'ml.maestro_id')
-        ->join('laptops_data as lap', 'm.id', '=', 'ml.laptop_id')
+        ->join('maestro_apto_lap as m', 'ml.maestro_id', '=', 'm.id')
+        ->join('laptops_data as lap', 'ml.laptop_id', '=', 'lap.id')
         ->where('lap.isFree', '=', 0)
-        ->where('m.provincia', '=' ,$provincia)
+        ->where('m.provincia', '=' , $provincia)
         ->paginate($itemsPerPage, ['*'], 'page', $page);
 
 
