@@ -73,10 +73,7 @@ class LapMaestro extends Model
 
         $response = [
             'data' => $reportData->items(),
-            'current_page' => $reportData->currentPage(),
-            'total_pages' => $reportData->total(),
-            'per_pages' => $reportData->perPage(),
-            'last_page' => $reportData->lastPage()
+            'total_items' => $reportData->total(),
         ];
         return $response;
     }
