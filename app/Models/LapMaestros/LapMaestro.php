@@ -61,11 +61,12 @@ class LapMaestro extends Model
         $reportData = $connection->table('maestro_apto_lap as m')
         ->select(
             'm.provincia as Provincia',
-            $connection->raw('(SELECT COUNT(*) FROM maestro_apto_lap WHERE provincia = m.provincia) AS TotalPorProvincia'),
-            $connection->raw('COUNT(ml.maestro_id) AS Entregado'),
-            $connection->raw('(SELECT COUNT(id) FROM maestro_apto_lap WHERE provincia = m.provincia) - COUNT(ml.maestro_id) AS RestanteProvincia')
+            'm.full_name as FullName',
+            'lap.serie as LaptopEntregada' 
         )
         ->join('maestros_laptops as ml', 'm.id', '=', 'ml.maestro_id')
+        ->join('laptops_data as lap', 'm.id', '=', 'ml.laptop_id')
+        ->where('lap.isFree', '=', 0)
         ->groupBy('m.provincia')
         ->paginate($itemsPerPage, ['*'], 'page', $page);
 
