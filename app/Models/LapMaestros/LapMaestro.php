@@ -67,7 +67,7 @@ class LapMaestro extends Model
         ->join('maestros_laptops as ml', 'm.id', '=', 'ml.maestro_id')
         ->join('laptops_data as lap', 'm.id', '=', 'ml.laptop_id')
         ->where('lap.isFree', '=', 0)
-        ->whereRaw("m.provincia like '%$provincia%' ")
+        ->where('m.provincia', '=' ,$provincia)
         ->paginate($itemsPerPage, ['*'], 'page', $page);
 
 
