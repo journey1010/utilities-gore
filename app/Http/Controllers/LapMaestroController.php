@@ -18,7 +18,7 @@ class LapMaestroController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except'=> ['searchDni', 'searchByName']]);
+        $this->middleware('auth', ['except'=> ['searchDni', 'searchByName', 'laptopsEntregadas', 'laptopsEntregadasList']]);
     }
     
     public function searchDni(LapMaestroRequest $request)
