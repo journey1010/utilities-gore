@@ -12,7 +12,7 @@ use App\Models\LapMaestros\MaestrosAptoModel as Maestro;
 use App\Models\LapMaestros\LapSerieModel as Lap;
 use App\Models\LapMaestros\LapMaestro;
 use Exception;
-use GuzzleHttp\Psr7\Request;
+
 
 class LapMaestroController extends Controller
 {
