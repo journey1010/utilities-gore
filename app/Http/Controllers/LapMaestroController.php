@@ -35,14 +35,15 @@ class LapMaestroController extends Controller
                     'ie' => $maestro->ie,
                     'recibio_laptop' => ($maestro->is_laptop_received == 1) ? 'Sí' : 'No',
                     'Condicion' => $maestro->condicion,
-                    'nivel' => $maestro->nivel
+                    'nivel' => $maestro->nivel,
+                    'serieLap' => $maestro->serie
                 ]
             ], 200);
         } catch(\Exception $e){
             return response()->json([
                 'status' => 'error',
                 'message' => $e->getMessage()
-            ], 500);
+            ], 404);
         }
     }
 
@@ -58,7 +59,7 @@ class LapMaestroController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => $e->getMessage()
-            ], 500);
+            ], 404);
         }
     }
 
@@ -96,7 +97,7 @@ class LapMaestroController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'No se pudo obtener el reporte'
-            ], 500);
+            ], 404);
         }
     }
 
