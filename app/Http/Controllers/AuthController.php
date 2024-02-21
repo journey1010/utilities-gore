@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except'=>'login', 'refreshToken']);
+        $this->middleware('auth', ['except'=> ['login', 'refreshToken']]);
     }
 
     public function login(LoginRequest $request)
