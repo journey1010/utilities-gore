@@ -30,8 +30,8 @@ class MaestrosAptoModel extends Model
         
         $maestro = MaestrosAptoModel::where('dni', $dni)
         ->join('maestros_laptops', 'maestro_apto_lap.id', '=', 'maestros_laptops.maestro_id')
-        ->join('')
-        ->first();
+        ->join('laptops_data', 'maestros_laptops', '=')
+        ->get();
         if(!$maestro){
             throw new Exception('No se encontro el número de DNI');
         }
