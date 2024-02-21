@@ -25,7 +25,7 @@ class AuthController extends Controller
         }
     
         $user = Auth::guard('api')->user();
-        $token = JWTAuth::claims(['type' => $user->rol])->fromUser($user);
+        $token = JWTAuth::claims(['type' => $user->rol, 'email' => $request->email])->fromUser($user);
         
         return response()->json([
             'status' => 'success',
