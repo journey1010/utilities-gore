@@ -5,6 +5,7 @@ namespace App\Models\LapMaestros;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class MaestrosAptoModel extends Model
 {
@@ -26,7 +27,11 @@ class MaestrosAptoModel extends Model
 
     public static function searchDNI($dni)
     {
-        $maestro = MaestrosAptoModel::where('dni', $dni)->first();
+        
+        $maestro = MaestrosAptoModel::where('dni', $dni)
+        ->join('maestros_laptops', 'maestro_apto_lap.id', '=', 'maestros_laptops.maestro_id')
+        ->join('')
+        ->first();
         if(!$maestro){
             throw new Exception('No se encontro el número de DNI');
         }
