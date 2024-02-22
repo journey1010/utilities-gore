@@ -46,7 +46,8 @@ class ReporteExcelMaestros
 
         $writer = new Xlsx($spreadsheet);
         $writer->save(storage_path('app/public/exports/') . $fileName);
-        $url = Storage::url('app/public/exports/' . $fileName);
+        $url = asset(Storage::url('app/public/exports/' . $fileName));
+        $url = str_replace('storage/app/public/exports', 'storage/exports', $url);
         return $url;
     }
 
