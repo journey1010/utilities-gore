@@ -77,4 +77,10 @@ class LapMaestro extends Model
         ];
         return $response;
     }
+
+    public static function listMaestroLaptops()
+    {
+        $connection = DB::connection('utilities');
+    }
+    
 }
