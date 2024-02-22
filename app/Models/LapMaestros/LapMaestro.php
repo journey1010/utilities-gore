@@ -78,9 +78,10 @@ class LapMaestro extends Model
         return $response;
     }
 
-    public static function listMaestroLaptops()
+    public static function listMaestroLaptops($provincia)
     {
         $connection = DB::connection('utilities');
+        $list = $connection->select('CALL obtenerListMaestrosLaptops(?)', [$provincia] );
+        return $list;
     }
-    
 }

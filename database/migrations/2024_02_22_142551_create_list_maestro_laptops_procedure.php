@@ -21,6 +21,7 @@ return new class extends Migration
                 SELECT 
                     m.provincia as Provincia, 
                     m.full_name as FullName, 
+                    m.dni as DNI,
                     COALESCE(lap.serie, 'Sin laptop asignada') as SerieLap, 
                     CASE WHEN ml.id IS NOT NULL THEN 'Sí' ELSE 'No' END as LaptopRecibida 
                 FROM maestro_apto_lap as m 
