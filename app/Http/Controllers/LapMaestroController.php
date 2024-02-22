@@ -14,7 +14,7 @@ use App\Models\LapMaestros\LapSerieModel as Lap;
 use App\Models\LapMaestros\LapMaestro;
 use Exception;
 
-use App\Services\ReporteExcelMaestros AS SpreedSheet;
+use App\Services\LapMaestros\ReporteExcelMaestros AS SpreedSheet;
 
 
 class LapMaestroController extends Controller
