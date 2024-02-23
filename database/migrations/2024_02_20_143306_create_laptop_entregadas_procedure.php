@@ -18,7 +18,7 @@ return new class extends Migration
                     m.provincia AS Provincia,
                     (SELECT COUNT(*) FROM maestro_apto_lap WHERE provincia = m.provincia) AS TotalPorProvincia,
                     COUNT(ml.maestro_id) AS Entregado, 
-                    (SELECT COUNT(id) FROM maestro_apto_lap WHERE provincia = m.provincia) - COUNT(ml.maestro_id) AS RestanteProvincia
+                    (SELECT COUNT(id) FROM maestro_apto_lap WHERE provincia = m.provincia) - COUNT(ml.maestro_id) AS Entregado
                 FROM  
                     maestro_apto_lap AS m
                 INNER JOIN  

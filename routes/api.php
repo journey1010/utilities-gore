@@ -14,3 +14,5 @@ Route::get('/dashboard/laptops/entregadas', [LapMaestroController::class, 'lapto
 Route::post('/laptops/entregadas', [LapMaestroController::class, 'laptopsEntregadasList']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/refresh', [AuthController::class, 'refreshToken']);
+Route::get('/report/list/maestros', [LapMaestroController::class, 'totalListMaestro']);
+Route::get('/report/list/provincia', [LapMaestroController::class, 'totalLaptopsProvincia']);

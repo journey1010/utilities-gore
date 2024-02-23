@@ -26,7 +26,8 @@ class LapMaestro extends Model
             $connection  = DB::connection('utilities');
             $connection->table('maestros_laptops')->insert([
                 'maestro_id' => $idMaestro,
-                'laptop_id' => $idSerie
+                'laptop_id' => $idSerie,
+                'created_at' => date('Y-m-d H:i:s')
             ]);
         
             $connectionMaestro = DB::connection('utilities');
@@ -76,5 +77,12 @@ class LapMaestro extends Model
             'total_items' => $reportData->total(),
         ];
         return $response;
+    }
+
+    public static function listMaestroLaptops($provincia)
+    {
+        $connection = DB::connection('utilities');
+        $list = $connection->select('CALL obtenerListMaestrosLaptops(?)', [$provincia] );
+        return $list;
     }
 }
