@@ -13,32 +13,41 @@ use Illuminate\Support\Facades\Storage;
 
 class ReporteTotal
 {
-
-    protected $fila = 2;
+    protected $fila = 3;
 
     protected $headersTotal = [
-        'A1' => 'Provincia',
-        'B1' => 'Total',
-        'C1' => 'Entregadas',
-        'D1' => 'Restante',
+        'A2' => 'Provincia',
+        'B2' => 'Total',
+        'C2' => 'Entregadas',
+        'D2' => 'Restante',
     ];
-    
     
     public function generateReporte($consulta)
     {
         $spreadsheet = new Spreadsheet();
         $workSheet = $this->setStyleHeaders($spreadsheet->getActiveSheet());
 
-        $this->fila = 2;
+        $workSheet->setCellValue('A1', 'REPORTE DEL TOTAL  DE LAPTOPS ENTREGADAS A MAESTROS');
+        $workSheet->getStyle('A1')->getFont()->setBold(true)->setSize(20);
 
+        $totalProvincia = 0;
+        $totalEntregado =  0;
+        $totalRestante  = 0;
         foreach ($consulta as $dato) {
             $workSheet->setCellValue('A' . $this->fila, $dato->Provincia);
             $workSheet->setCellValue('B' . $this->fila, $dato->TotalPorProvincia);
             $workSheet->setCellValue('C' . $this->fila, $dato->Entregado);
             $workSheet->setCellValue('D' . $this->fila, $dato->RestanteProvincia);
+
+            $totalProvincia += $dato->TotalPorProvincia;
+            $totalEntregado += $dato->Entregado;
+            $totalRestante += $dato->RestanteProvincia; 
+
             $this->fila++;
         }
 
+        $this->styleTotal($workSheet, $totalProvincia, $totalEntregado, $totalRestante);
+        
         $this->setColumnWidths($workSheet);
         $this->setRowHeights($workSheet);
         $this->setStyleBorders($workSheet);
@@ -70,23 +79,35 @@ class ReporteTotal
         return $hojaActiva;
     }
 
-    protected function styleTotal(Worksheet $hojaActiva)
+    protected function styleTotal(Worksheet $hojaActiva, int $totalMaestros, int $entregadas, int $faltantes )
     {   
-        $fila = 10;
-        $hojaActiva->setCellValue('E' . $fila , $estado_entrada);
+        $fila = 11;
+
+        $hojaActiva->setCellValue('B' . $fila ,$totalMaestros);
+        $hojaActiva->getStyle('B' . $fila)->getFont()->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLACK));
+        $hojaActiva->getStyle('B' . $fila)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('00FF00');
+
+        $hojaActiva->setCellValue('C' . $fila ,$entregadas);
+        $hojaActiva->getStyle('C' . $fila)->getFont()->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLACK));
+        $hojaActiva->getStyle('C' . $fila)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('00FF00');
+
+        $hojaActiva->setCellValue('D' . $fila ,$faltantes);
+        $hojaActiva->getStyle('D' . $fila)->getFont()->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLACK));
+        $hojaActiva->getStyle('D' . $fila)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('00FF00');
+
+        $hojaActiva->setCellValue('E' . $fila , 'TOTAL');
         $hojaActiva->getStyle('E' . $fila)->getFont()->setBold(true)->setUnderline(false)->setStrikethrough(false);
         $hojaActiva->getStyle('E' . $fila)->getFont()->setColor(new \PhpOffice\PhpSpreadsheet\Style\Color(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_BLACK));
-        $hojaActiva->getStyle('E' . $fila)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB($color_estado);
-
+        $hojaActiva->getStyle('E' . $fila)->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setRGB('00FF00');
     }
     
 
     private function setColumnWidths(Worksheet $workSheet)
     {
         $workSheet->getColumnDimension('A')->setWidth(20);
-        $workSheet->getColumnDimension('B')->setWidth(40);
-        $workSheet->getColumnDimension('C')->setWidth(40);
-        $workSheet->getColumnDimension('D')->setWidth(50);
+        $workSheet->getColumnDimension('B')->setWidth(20);
+        $workSheet->getColumnDimension('C')->setWidth(20);
+        $workSheet->getColumnDimension('D')->setWidth(20);
     }
 
     private function setRowHeights(Worksheet $workSheet)

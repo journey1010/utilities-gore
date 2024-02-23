@@ -19,8 +19,9 @@ class ReporteExcelMaestros
     protected $headersReportMaestros = [
         'A1' => 'PROVINCIA',
         'B1' => 'NOMBRE COMPLETO',
-        'C1' => 'SERIE LAPTOP',
-        'D1' => '¿RECIBIÓ LAPTOP?',
+        'C1' => 'DNI',
+        'D1' => 'SERIE LAPTOP',
+        'E1' => '¿RECIBIÓ LAPTOP?',
     ];
 
     public function generateReporte($consulta)
@@ -33,8 +34,9 @@ class ReporteExcelMaestros
         foreach ($consulta as $dato) {
             $workSheet->setCellValue('A' . $this->fila, $dato->Provincia);
             $workSheet->setCellValue('B' . $this->fila, $dato->FullName);
-            $workSheet->setCellValue('C' . $this->fila, $dato->SerieLap);
-            $workSheet->setCellValue('D' . $this->fila, $dato->LaptopRecibida);
+            $workSheet->setCellValue('C' . $this->fila, $dato->DNI);
+            $workSheet->setCellValue('D' . $this->fila, $dato->SerieLap);
+            $workSheet->setCellValue('E' . $this->fila, $dato->LaptopRecibida);
             $this->fila++;
         }
 
@@ -75,6 +77,7 @@ class ReporteExcelMaestros
         $workSheet->getColumnDimension('B')->setWidth(40);
         $workSheet->getColumnDimension('C')->setWidth(40);
         $workSheet->getColumnDimension('D')->setWidth(50);
+        $workSheet->getColumnDimension('E')->setWidth(50);
     }
 
     private function setRowHeights(Worksheet $workSheet)
@@ -85,7 +88,7 @@ class ReporteExcelMaestros
 
     private function setStyleBorders(Worksheet $workSheet)
     {
-        $workSheet->getStyle('A2:D' . ($this->fila - 1))
+        $workSheet->getStyle('A2:E' . ($this->fila - 1))
             ->getBorders()
             ->getOutline()
             ->setBorderStyle(Border::BORDER_THICK)

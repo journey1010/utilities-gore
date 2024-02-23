@@ -15,13 +15,14 @@ use App\Models\LapMaestros\LapMaestro;
 use Exception;
 
 use App\Services\LapMaestros\ReporteExcelMaestros AS SpreedSheet;
+use App\Services\LapMaestros\ReporteTotal as SpreedSheetTotal;
 
 
 class LapMaestroController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except'=> ['searchDni', 'searchByName', 'laptopsEntregadas', 'laptopsEntregadasList', 'totalListMaestro']]);
+        $this->middleware('auth', ['except'=> ['searchDni', 'searchByName', 'laptopsEntregadas', 'laptopsEntregadasList', 'totalListMaestro', 'totalLaptopsProvincia']]);
     }
     
     public function searchDni(LapMaestroRequest $request)
@@ -135,12 +136,36 @@ class LapMaestroController extends Controller
             $path = $makeReport->generateReporte($list);
             return response()->json([
                 'status' => 'success',
-                'message' => $path
+                'path' => $path
             ], 200);
         } catch (Exception $e){
             return response()->json([
                 'status' => 'error',
                 'message' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
+     * Genera un reporte del total de laptops entregadas por provincia y el total restante
+     * De laptops por entregar
+     * @return url 
+    */
+
+    public function totalLaptopsProvincia()
+    {
+        try{
+            $list = LapMaestro::laptopsEntregadasProvincia();
+            $makeReport = new SpreedSheetTotal();
+            $path = $makeReport->generateReporte($list);
+            return response()->json([
+                'status' => 'success',
+                'path' => $path
+            ]);
+        } catch(Exception $e){
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
             ], 500);
         }
     }
