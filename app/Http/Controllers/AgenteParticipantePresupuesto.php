@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AgentePresupuesto\Store;
+use App\Http\Requests\AgentePresupuesto\Lists;
 use Illuminate\Http\JsonResponse;
 use App\Models\AgenteParticipantePresupuesto AS AgenteModel;
 
@@ -11,9 +12,21 @@ class AgenteParticipantePresupuesto extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Lists $request): JsonResponse
     {
-        
+        try {   
+            $lista  = AgenteModel::list($request->itemsPerPage, $request->page);
+            return response()->json([
+                'status' => 'success',
+                'data' => $lista['items'],
+                'total' => $lista['total_items']
+            ], 200);
+        } catch(\Exception $e){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error al devolver lista'
+            ], 500);
+        }
     }
 
     public function store(Store $request): JsonResponse

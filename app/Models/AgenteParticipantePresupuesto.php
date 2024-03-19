@@ -61,4 +61,16 @@ class AgenteParticipantePresupuesto extends Model
         ]);
         return;
     }
+
+    public static function list(int $itemsPerPage, int $page)
+    {
+        $list = AgenteParticipantePresupuesto::select()
+            ->paginate($itemsPerPage, ['*'], 'page', $page);
+
+        $response = [
+            'data' => $list->items(),
+            'total_items' => $list->total(),
+        ];
+        return $response;
+    }
 }
