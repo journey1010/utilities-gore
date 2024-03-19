@@ -25,7 +25,7 @@ class AgenteParticipantePresupuesto extends Model
         'equipo_tecnico',
         'grado_instruccion',
         'credencial',
-        'path_file'
+        'created_at'
     ];
 
     public static function saveAgente(
@@ -57,6 +57,7 @@ class AgenteParticipantePresupuesto extends Model
             'equipo_tecnico'  =>   $equipoTecnico,
             'grado_instruccion' => $gradoInstruccion,
             'credencial' =>$pathFile,
+            'created_at' => date('Y-m-d H:i:s') 
         ]);
         return;
     }
