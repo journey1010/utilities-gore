@@ -25,7 +25,6 @@ class AgenteParticipantePresupuesto extends Model
         'equipo_tecnico',
         'grado_instruccion',
         'credencial',
-        'path_file',
         'created_at'
     ];
 
