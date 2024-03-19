@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AgenteParticipantePresupuesto;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\LapMaestroController;
 use App\Http\Controllers\AuthController;
@@ -16,3 +17,4 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/refresh', [AuthController::class, 'refreshToken']);
 Route::get('/report/list/maestros', [LapMaestroController::class, 'totalListMaestro']);
 Route::get('/report/list/provincia', [LapMaestroController::class, 'totalLaptopsProvincia']);
+Route::post('/agente/participante/presupuesto', [AgenteParticipantePresupuesto::class, 'store']);
