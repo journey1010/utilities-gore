@@ -23,7 +23,7 @@ class Store extends FormRequest
         $jsonResponse  = new JsonResponse([
             'status' => 'error',
             'message' => messageValidation($validator),
-        ]);
+        ], 422);
 
         throw new HttpResponseException($jsonResponse);
     }
