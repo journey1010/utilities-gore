@@ -8,6 +8,11 @@ use Illuminate\Http\JsonResponse;
 
 class FeedBackCapacitacion extends Controller
 {
+    public function index()
+    {
+        return view('feedback-capacitacion');
+    }
+
     public function store(FBC $request): JsonResponse
     {
         try {
