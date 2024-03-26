@@ -18,4 +18,4 @@ Route::post('/refresh', [AuthController::class, 'refreshToken']);
 Route::get('/report/list/maestros', [LapMaestroController::class, 'totalListMaestro']);
 Route::get('/report/list/provincia', [LapMaestroController::class, 'totalLaptopsProvincia']);
 Route::post('/agente/participante/presupuesto', [AgenteParticipantePresupuesto::class, 'store']);
-Route::get('/agente', [AgenteParticipantePresupuesto::class, 'list'])->middleware('auth:api');
+Route::get('/agente/list', [AgenteParticipantePresupuesto::class, 'list'])->middleware('auth:api');
