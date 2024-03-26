@@ -5,6 +5,7 @@ use App\Http\Controllers\AgenteParticipantePresupuesto;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\LapMaestroController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FeedBackCapacitacion;
 
 Route::post('/feedback',[FeedbackController::class, 'storeFeedback']);
 Route::get('/feedback-list', [FeedbackController::class, 'listFeedbacks']);
@@ -19,3 +20,4 @@ Route::get('/report/list/maestros', [LapMaestroController::class, 'totalListMaes
 Route::get('/report/list/provincia', [LapMaestroController::class, 'totalLaptopsProvincia']);
 Route::post('/agente/participante/presupuesto', [AgenteParticipantePresupuesto::class, 'store']);
 Route::get('/agente/list', [AgenteParticipantePresupuesto::class, 'list'])->middleware('auth:api');
+Route::get('/feeback/capacitacion', [FeedBackCapacitacion::class, 'store']);
