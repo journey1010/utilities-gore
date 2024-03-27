@@ -33,7 +33,7 @@
                             text: errorData.message || "Ocurrió un error al procesar la solicitud.",
                             icon: "error"
                         });
-                        throw new Error('Error en la solicitud.');
+                        throw new Error(errorData.message);
                     });
                 } else if (!response.ok) {
                     Swal.fire({
@@ -41,7 +41,7 @@
                         text: "Ocurrió un error al procesar la solicitud.",
                         icon: "error"
                     });
-                    throw new Error('Error en la solicitud.');
+                    throw new Error(errorData.message);
                 }
                 return response.json();
             })
