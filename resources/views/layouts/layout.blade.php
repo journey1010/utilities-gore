@@ -30,21 +30,22 @@
                     return response.json().then(errorData => {
                         Swal.fire({
                             title: "Error",
-                            text: errorData.message,
+                            text: errorData.message || "Ocurrió un error al procesar la solicitud.",
                             icon: "error"
                         });
+                        throw new Error('Error en la solicitud.');
                     });
                 } else if (!response.ok) {
                     Swal.fire({
                         title: "Error",
-                        text: data.message,
+                        text: "Ocurrió un error al procesar la solicitud.",
                         icon: "error"
                     });
+                    throw new Error('Error en la solicitud.');
                 }
                 return response.json();
             })
             .then(data => {
-                
                 if (data.status === 'success') {
                     Swal.fire({
                         title: "Éxito",
@@ -52,10 +53,9 @@
                         icon: "success"
                     });
                 } else {
-
                     Swal.fire({
                         title: "Error",
-                        text: data.message,
+                        text: data.message || "Ocurrió un error al procesar la solicitud.",
                         icon: "error"
                     });
                 }
@@ -63,11 +63,10 @@
             .catch(error => {
                 Swal.fire({
                     title: "Error",
-                    text: error.message,
+                    text: error.message || "Ocurrió un error al procesar la solicitud.",
                     icon: "error"
                 });
             });
-
         }
     </script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
