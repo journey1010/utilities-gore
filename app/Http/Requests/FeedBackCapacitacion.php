@@ -36,7 +36,7 @@ class FeedBackCapacitacion extends FormRequest
     public function rules(): array
     {
         return [
-            'g-recaptcha-response' => 'required|recaptcha',
+            'g-recaptcha-response' => 'required|captcha',
             'gradoSatisfaccion' => 'required|string',
             'cursoMaximaAtencion' => 'required|string',
             'cursoGustariaAprender' => 'required|string',
