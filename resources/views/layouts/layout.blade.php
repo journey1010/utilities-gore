@@ -44,9 +44,9 @@
                     });
                 } else {
                   Swal.fire({
-                      title: "Exito",
-                      text: data.message
-                      icon: "success"
+                      title: "Error",
+                      text: data.message,
+                      icon: "error"
                   });
                 }
             })
