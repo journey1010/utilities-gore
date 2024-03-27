@@ -21,7 +21,7 @@
             const formData = new FormData(document.getElementById("encuesta-form"));
             formData.append("g-recaptcha-response", token);
 
-            fetch("https://utilities.gob.pe/api/feeback/capacitacion", {
+            fetch("https://utilities.regionloreto.gob.pe/api/feeback/capacitacion", {
                 method: "POST",
                 body: formData
             })
