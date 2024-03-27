@@ -76,8 +76,11 @@
   @yield('body')
   </body>
   <script>
-    document.getElementById("submitBtn").addEventListener("click", function() {
-        grecaptcha.execute();
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("submitBtn").addEventListener("click", function(event) {
+            event.preventDefault(); 
+            grecaptcha.execute();
+        });
     });
   </script>
 </html>
