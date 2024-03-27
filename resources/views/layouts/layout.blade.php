@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel='icon' type='image/x-icon' href="{{asset('img/favicon.ico')}}"">
+    <link rel='ico' type='image/x-icon' href="{{asset('img/favicon.ico')}}">
     <link rel="preload" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <title>Encuesta Satisfacción | Capacitaciones </title>
     <link href="{{asset('css/style.css')}}" rel="stylesheet">
@@ -39,7 +39,7 @@
                 if (data.status === 'success') {
                     Swal.fire({
                       title: "Exito",
-                      text: data.message
+                      text: data.message,
                       icon: "success"
                     });
                 } else {
@@ -52,20 +52,22 @@
             })
             .catch(error => {
               Swal.fire({
-                      title: "Exito",
-                      text: error
-                      icon: "success"
+                  title: "Exito",
+                  text: error
+                  icon: "success"
               });
             });
         }
-        document.getElementById("submitBtn").addEventListener("click", function() {
-            grecaptcha.execute();
-        });
-
     </script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
   <body>
   @yield('body')
   </body>
+  <script>
+    document.getElementById("submitBtn").addEventListener("click", function() {
+        grecaptcha.execute();
+        alert('Hola');
+    });
+  </script>
 </html>

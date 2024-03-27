@@ -11,7 +11,7 @@
                     <div class="g-recaptcha" data-sitekey="6LeKhqUpAAAAAIRdl5eVItUZWql3iA88bT58ifcZ" data-callback="onSubmit" data-size="invisible"></div>
                     <div class="row justify-content-between text-left">
                         <div class="form-group col-sm-12 flex-column d-flex"> 
-                            <label class="form-control-label"> Grado de Satisfacción de en Capacitaciones de Tecnologías de la Información<span class="text-danger"> *</span></label> 
+                            <label class="form-control-label"> Grado de Satisfacción en Capacitaciones de Tecnologías de la Información<span class="text-danger"> *</span></label> 
                             <select id="gradoSatisfaccion" class="form-control" aria-label="Default select example">
                                 <option selected>Seleccione una opción</option>
                                 <option value="1">1</option>
@@ -27,7 +27,7 @@
                             </select>
                         </div>
                         <div class="form-group col-sm-12 flex-column d-flex"> 
-                            <label class="form-control-label">De las capacitaciones en TI - 2023, ¿Que curso fue de su maxima atención?<span class="text-danger"> *</span></label> 
+                            <label class="form-control-label">De las capacitaciones en TI - 2023, ¿Qué curso fue de su máxima atención?<span class="text-danger"> *</span></label> 
                             <select id="cursoMaximaAtencion" class="form-control" aria-label="Default select example">
                                 <option selected>Seleccione una opción</option>
                                 <option value="SIGEDOC">SIGEDOC</option>
@@ -35,7 +35,7 @@
                                 <option value="CHATBOT">CHATBOT</option>
                                 <option value="OFIMATICA-WORD">OFIMATICA-WORD</option>
                                 <option value="OFIMATICA-EXCEL">OFIMATICA-EXCEL</option>
-                                <option value="SEGURIDAD DE LA INFORMACION">SEGURIDAD DE LA INFORMACION</option>
+                                <option value="SEGURIDAD DE LA INFORMACION">SEGURIDAD DE LA INFORMACIÓN</option>
                             </select>           
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                             </select>
                         </div>
                         <div class="form-group col-sm-12 flex-column d-flex"> 
-                            <label class="form-control-label">¿En que desea que mejore o se implemente las capacitaciones de TI?<span class="text-danger"> *</span></label> 
+                            <label class="form-control-label">¿En qué desea que mejore o se implemente las capacitaciones de TI?<span class="text-danger"> *</span></label> 
                             <select id="opinionMejoraCapacitacion" class="form-control" aria-label="Default select example">
                                 <option selected>Seleccione una opción</option>
                                 <option value="Presencial">Presencial</option>
@@ -69,7 +69,8 @@
                         </div>
                     </div>
                     <div class="row justify-content-end">
-                        <div class="form-group col-sm-6"> <button type="button"  id="submitBtn">Guardar</button>
+                        <div class="form-group col-sm-6">
+                            <button type="button" id="submitBtn" class="btn btn-outline-secondary px-3">Guardar</button>
                         </div>
                     </div>
                 </form>
