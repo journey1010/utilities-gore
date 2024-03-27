@@ -67,7 +67,6 @@
   <script>
     document.getElementById("submitBtn").addEventListener("click", function() {
         grecaptcha.execute();
-        alert('Hola');
     });
   </script>
 </html>
