@@ -26,37 +26,51 @@
                 body: formData
             })
             .then(response => {
-                if (!response.ok) {
-                  Swal.fire({
-                    title: "Error",
-                    text: response.data.message,
-                    icon: "error"
-                  });
+                if (response.status === 422) {
+                    return response.json().then(errorData => {
+                        Swal.fire({
+                            title: "Error",
+                            text: errorData.message,
+                            icon: "error"
+                        });
+                        throw new Error('Error en la solicitud.');
+                    });
+                } else if (!response.ok) {
+                    Swal.fire({
+                        title: "Error",
+                        text: data.message,
+                        icon: "error"
+                    });
+                    throw new Error('Error en la solicitud.');
                 }
                 return response.json();
             })
             .then(data => {
+                
                 if (data.status === 'success') {
                     Swal.fire({
-                      title: "Exito",
-                      text: data.message,
-                      icon: "success"
+                        title: "Éxito",
+                        text: data.message,
+                        icon: "success"
                     });
                 } else {
-                  Swal.fire({
-                      title: "Error",
-                      text: data.message,
-                      icon: "error"
-                  });
+
+                    Swal.fire({
+                        title: "Error",
+                        text: data.message,
+                        icon: "error"
+                    });
                 }
             })
             .catch(error => {
-              Swal.fire({
-                  title: "Error",
-                  text: error,
-                  icon: "error"
-              });
+    
+                Swal.fire({
+                    title: "Error",
+                    text: error.message,
+                    icon: "error"
+                });
             });
+
         }
     </script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
