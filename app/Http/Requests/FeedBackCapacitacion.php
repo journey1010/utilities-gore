@@ -44,4 +44,17 @@ class FeedBackCapacitacion extends FormRequest
             'horarioCapacitacion' => 'required|string'
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'g-recaptcha-response.required' => 'Token recaptcha es requerido',
+            'g-recaptcha-response.required' => 'Token recaptcha no es valido',
+            'gradoSatisfaccion.required' => 'Debe Seleccionar el grado de satisfacción',
+            'cursoMaximaAtencion.required' => 'Debe Indicar el curso que fue de su máxima atención',
+            'cursoGustariaAprender.required' => 'Debe Indicar el curso que le gustaría aprender',
+            'opinionMejoraCapacitacion' => 'Debe indicar ¿En qué desea que mejore o se implemente las capacitaciones de TI?',
+            'horarioCapacitacion.required' => 'Debe indicar un horario'
+        ];
+    }
 }
