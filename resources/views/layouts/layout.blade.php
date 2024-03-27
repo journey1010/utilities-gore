@@ -53,7 +53,7 @@
             .catch(error => {
               Swal.fire({
                   title: "Exito",
-                  text: error
+                  text: error,
                   icon: "success"
               });
             });
