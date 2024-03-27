@@ -54,7 +54,7 @@
               Swal.fire({
                   title: "Error",
                   text: error,
-                  icon: "success"
+                  icon: "error"
               });
             });
         }
