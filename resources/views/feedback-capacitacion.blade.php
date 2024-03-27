@@ -3,7 +3,7 @@
 <div class="container-fluid px-1 py-5 mx-auto">
     <div class="row d-flex justify-content-center">
         <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-            <h3>Encuesta de TI</h3>
+            {{-- <h3>Encuesta de TI</h3>
             <p class="blue-text">Solo responda algunas preguntas<br> para que podamos personalizar la experiencia para Usted.</p>
             <div class="card">
                 <h5 class="text-center mb-4">Gobierno Regional de Loreto</h5>
@@ -74,7 +74,8 @@
                         </div>
                     </div>
                 </form>
-            </div>
+            </div> --}}
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScxKf9TZ3wJQwx157se2ej05Yv8_m3mamoq14EySQk5tjoGjw/viewform?embedded=true" width="640" height="1671" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
         </div>
     </div>
 </div>
