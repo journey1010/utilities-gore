@@ -33,7 +33,6 @@
                             text: errorData.message,
                             icon: "error"
                         });
-                        throw new Error('Error en la solicitud.');
                     });
                 } else if (!response.ok) {
                     Swal.fire({
@@ -41,7 +40,6 @@
                         text: data.message,
                         icon: "error"
                     });
-                    throw new Error('Error en la solicitud.');
                 }
                 return response.json();
             })
@@ -63,7 +61,6 @@
                 }
             })
             .catch(error => {
-    
                 Swal.fire({
                     title: "Error",
                     text: error.message,
