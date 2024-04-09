@@ -16,9 +16,13 @@ class isUserActive implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $user =  DB::table('users')
-                ->where('status', 1)
+                ->where('email', $value)
                 ->first();
         if(!$user){
+            $fail('Este correo no existe'); 
+            return;
+        }
+        if($user->status != 1){
             $fail('Su cuenta ha sido inhabilitada de manera temporal');
         }
     }

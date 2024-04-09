@@ -21,3 +21,4 @@ Route::get('/report/list/provincia', [LapMaestroController::class, 'totalLaptops
 Route::post('/agente/participante/presupuesto', [AgenteParticipantePresupuesto::class, 'store']);
 Route::get('/agente/list', [AgenteParticipantePresupuesto::class, 'list'])->middleware('auth:api');
 Route::post('/feeback/capacitacion', [FeedBackCapacitacion::class, 'store']);
+Route::post('/auth/user', [AuthController::class, 'register']);

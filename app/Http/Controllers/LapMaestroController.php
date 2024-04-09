@@ -73,7 +73,7 @@ class LapMaestroController extends Controller
             $serie =  Lap::where('serie', '=', $request->serieLap)
                     ->where('isFree', '=', 1)        
                     ->first();
-            $isSave = LapMaestro::saveLapMaestro($request->idMaestro, $serie->id);
+            $isSave = LapMaestro::saveLapMaestro($request->idMaestro, $serie->id, $request->userId);
             if(!$isSave){
                 throw new Exception('No se pudo guardar el registro. Vuelva a intentar');
             }    

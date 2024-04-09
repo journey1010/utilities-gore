@@ -16,9 +16,10 @@ class LapMaestro extends Model
     protected $fillable  = [
         'maestro_id',
         'laptop_id',
+        'user_id',
     ];
 
-    public static function saveLapMaestro(int $idMaestro, string $idSerie)
+    public static function saveLapMaestro(int $idMaestro, string $idSerie, int $userId)
     {
         try {
             DB::beginTransaction();
@@ -27,6 +28,7 @@ class LapMaestro extends Model
             $connection->table('maestros_laptops')->insert([
                 'maestro_id' => $idMaestro,
                 'laptop_id' => $idSerie,
+                'user_id' => $userId,
                 'created_at' => date('Y-m-d H:i:s')
             ]);
         

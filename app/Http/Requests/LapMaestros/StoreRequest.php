@@ -42,6 +42,7 @@ class StoreRequest extends FormRequest
         return [
             'idMaestro' => ['required', 'numeric', new MaestroStatus, new invalidateProvincia],
             'serieLap' => ['required', 'string', new LapStatus],
+            'userId' => 'required|numeric',
         ];
     }
 
@@ -51,7 +52,9 @@ class StoreRequest extends FormRequest
             'idMaestro.required' => 'ID de maestro no proporcionado',
             'idMaestro.numeric' => 'ID de maestro debe ser númerico',
             'serieLap.required' => 'Debe proporcionar un número de serie',
-            'serieLap.string' => 'El número de serie debe ser alfanumérico'
+            'serieLap.string' => 'El número de serie debe ser alfanumérico',
+            'userId.required' => 'El ID de usuario es requerido',
+            'userId.numeric' => 'El ID de usuario es numérico'
         ];
     }
 }
