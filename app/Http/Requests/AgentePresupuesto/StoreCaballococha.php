@@ -3,26 +3,27 @@
 namespace App\Http\Requests\AgentePresupuesto;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Contracts\Validation\Validator;
 
-class Store extends FormRequest
+class StoreCaballococha extends FormRequest
 {
+
     protected $stopOnFirstFailure = true;
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     protected function failedValidation(Validator $validator)
     {
-        $jsonResponse  = new JsonResponse([
+        $jsonResponse = new JsonResponse([
             'status' => 'error',
-            'message' => messageValidation($validator),
+            'message' => messageValidation($validator)
         ], 422);
 
         throw new HttpResponseException($jsonResponse);
@@ -38,18 +39,21 @@ class Store extends FormRequest
         return [
             'fullName' => 'required|string',
             'dni' => 'required|string',
-            'fechaNacimiento' => 'date',
-            'genero' => 'required|string|in:M,F',
             'organizacion' => 'required|string',
-            'organizacionTipo' => 'required|string',
-            'email' => 'string',
-            'profesion' => 'string',
             'cargo' => 'required|string',
-            'comiteVigilancia' => 'required|string',
-            'equipoTecnico' => 'required|string',
-            'gradoInstruccion' => 'string',
             'credencial' => 'required|file|mimes:jpg,jpeg,png,gif,webp',
-            'idForm' => 'required|string|max:255'
+            'isDiscapacitado' => 'required|in:1,0',
+            'idForm' => 'required|string|max:255|in:caballococha'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'idForm.required' => 'ID de formulario es requerido',
+            'idForm.in' => 'ID de este formulario es: caballococha',
+            'isDiscapacitado.required' => 'isDiscapacito es requerido',
+            'isDiscapacitado.in' => 'isDiscapacitado solo puede ser 1 ó 0'
         ];
     }
 }

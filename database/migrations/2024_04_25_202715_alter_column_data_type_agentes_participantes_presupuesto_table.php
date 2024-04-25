@@ -15,6 +15,7 @@ return new class extends Migration
             $table->enum('genero', ['M', 'F'])->nullable()->change();
             $table->date('fecha_nacimiento')->nullable()->change();
             $table->string('organizacion')->nullable()->change();
+            $table->string('organizacion_tipo')->nullable()->change();
             $table->string('cargo')->nullable()->change();
             $table->string('comite_vigilancia')->nullable()->change();
             $table->string('equipo_tecnico')->nullable()->change();
@@ -35,6 +36,7 @@ return new class extends Migration
             $table->string('comite_vigilancia')->change();
             $table->string('equipo_tecnico')->change();
             $table->string('credencial')->change();
+            $table->string('organizacion_tipo')->change();
         });
     }
 };

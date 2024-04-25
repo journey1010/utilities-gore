@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AgentePresupuesto\Store;
+use App\Http\Requests\AgentePresupuesto\StoreCaballococha;
 use App\Http\Requests\AgentePresupuesto\Lists;
 use Illuminate\Http\JsonResponse;
 use App\Models\AgenteParticipantePresupuesto AS AgenteModel;
@@ -60,12 +61,47 @@ class AgenteParticipantePresupuesto extends Controller
         } catch (\Throwable $e){
             return response()->json([
                 'status' => 'error',
-                'message' => 'Erro al guardar'
+                'message' => 'Error al guardar'
             ], 500);
         };
     }
 
-    public function saveFile($file, $dni): string
+    public function storeFormCaballococha(StoreCaballococha $request)
+    {
+        try{
+            $path = $this->saveFile($request->file('credencial'), $request->dni);
+ 
+             AgenteModel::saveAgente(
+                 $request->fullName,
+                 $request->dni,
+                 null,
+                 null,
+                 $request->organizacion,
+                 null,
+                 null,
+                 null,
+                 $request->cargo,
+                 null,
+                 null,
+                 null,
+                 $request->idForm,
+                 $path
+             );
+ 
+             return response()->json([
+                 'status' => 'success',
+                 'message' => 'Registro Exitoso'
+             ], 200);
+ 
+         } catch (\Throwable $e){
+             return response()->json([
+                 'status' => 'error',
+                 'message' => $e->getMessage()
+             ], 500);
+         };
+    }
+
+    protected function saveFile($file, $dni): string
     {   
         $uniqueName = $dni . date('-HmYdis');
         $extension = $file->getClientOriginalExtension();
@@ -74,7 +110,6 @@ class AgenteParticipantePresupuesto extends Controller
             $uniqueName . '.' . $extension,
             'public'
         );
-    
         return $path;
     }
 }
