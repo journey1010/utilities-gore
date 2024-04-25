@@ -24,6 +24,7 @@ class AgenteParticipantePresupuesto extends Model
         'comite_vigilancia',
         'equipo_tecnico',
         'grado_instruccion',
+        'id_form',
         'credencial',
         'created_at'
     ];
@@ -41,6 +42,7 @@ class AgenteParticipantePresupuesto extends Model
         $comiteVigilancia,
         $equipoTecnico,
         $gradoInstruccion,
+        $idForm,
         $pathFile
     ) {
         AgenteParticipantePresupuesto::create([
@@ -56,6 +58,7 @@ class AgenteParticipantePresupuesto extends Model
             'comite_vigilancia' => $comiteVigilancia,
             'equipo_tecnico'  =>   $equipoTecnico,
             'grado_instruccion' => $gradoInstruccion,
+            'id_form' => $idForm,
             'credencial' =>$pathFile,
             'created_at' => date('Y-m-d H:i:s') 
         ]);

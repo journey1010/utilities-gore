@@ -49,6 +49,7 @@ class Store extends FormRequest
             'equipoTecnico' => 'required|string',
             'gradoInstruccion' => 'string',
             'credencial' => 'required|file|mimes:jpg,jpeg,png,gif,webp',
+            'idForm' => 'required|string|max:255'
         ];
     }
 }
