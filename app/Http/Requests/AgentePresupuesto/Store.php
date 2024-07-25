@@ -24,7 +24,6 @@ class Store extends FormRequest
             'status' => 'error',
             'message' => messageValidation($validator),
         ], 422);
-
         throw new HttpResponseException($jsonResponse);
     }
 

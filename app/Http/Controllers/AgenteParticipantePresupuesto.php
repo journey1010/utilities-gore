@@ -57,7 +57,6 @@ class AgenteParticipantePresupuesto extends Controller
                 'status' => 'success',
                 'message' => 'Registro Exitoso'
             ], 200);
-
         } catch (\Throwable $e){
             return response()->json([
                 'status' => 'error',
