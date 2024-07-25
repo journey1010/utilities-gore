@@ -22,6 +22,7 @@ class ReporteExcelMaestros
         'C1' => 'DNI',
         'D1' => 'SERIE LAPTOP',
         'E1' => '¿RECIBIÓ LAPTOP?',
+        'F1' => 'FECHA DE ENTREGA',
     ];
 
     public function generateReporte($consulta)
@@ -37,6 +38,7 @@ class ReporteExcelMaestros
             $workSheet->setCellValue('C' . $this->fila, $dato->DNI);
             $workSheet->setCellValue('D' . $this->fila, $dato->SerieLap);
             $workSheet->setCellValue('E' . $this->fila, $dato->LaptopRecibida);
+            $workSheet->setCellValue('F' . $this->fila, $dato->date);
             $this->fila++;
         }
 
@@ -78,6 +80,7 @@ class ReporteExcelMaestros
         $workSheet->getColumnDimension('C')->setWidth(40);
         $workSheet->getColumnDimension('D')->setWidth(50);
         $workSheet->getColumnDimension('E')->setWidth(50);
+        $workSheet->getColumnDimension('F')->setWidth(50);
     }
 
     private function setRowHeights(Worksheet $workSheet)

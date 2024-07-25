@@ -5,6 +5,7 @@ use App\Http\Controllers\AgenteParticipantePresupuesto;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\LapMaestroController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FeedBackCapacitacion;
 
 Route::post('/feedback',[FeedbackController::class, 'storeFeedback']);
 Route::get('/feedback-list', [FeedbackController::class, 'listFeedbacks']);
@@ -17,4 +18,10 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/refresh', [AuthController::class, 'refreshToken']);
 Route::get('/report/list/maestros', [LapMaestroController::class, 'totalListMaestro']);
 Route::get('/report/list/provincia', [LapMaestroController::class, 'totalLaptopsProvincia']);
+Route::get('/agente/list', [AgenteParticipantePresupuesto::class, 'list'])->middleware('auth:api');
+Route::post('/feeback/capacitacion', [FeedBackCapacitacion::class, 'store']);
+
+Route::post('/agente/participante/presupuesto/caballococha', [AgenteParticipantePresupuesto::class, 'storeFormCaballococha']);
+
 Route::post('/agente/participante/presupuesto', [AgenteParticipantePresupuesto::class, 'store']);
+Route::post('/auth/user', [AuthController::class, 'register']); 

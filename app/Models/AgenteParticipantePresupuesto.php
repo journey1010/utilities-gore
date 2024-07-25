@@ -24,23 +24,25 @@ class AgenteParticipantePresupuesto extends Model
         'comite_vigilancia',
         'equipo_tecnico',
         'grado_instruccion',
+        'id_form',
         'credencial',
-        'path_file'
+        'created_at'
     ];
 
     public static function saveAgente(
         $fullName,
         $dni,
-        $fechaNacimiento,
-        $genero,
+        $fechaNacimiento= null,
+        $genero= null,
         $organizacion,
-        $organizacionTipo,
-        $email,
-        $profesion,
+        $organizacionTipo= null,
+        $email= null,
+        $profesion= null,
         $cargo,
-        $comiteVigilancia,
-        $equipoTecnico,
-        $gradoInstruccion,
+        $comiteVigilancia= null,
+        $equipoTecnico= null,
+        $gradoInstruccion= null,
+        $idForm,
         $pathFile
     ) {
         AgenteParticipantePresupuesto::create([
@@ -56,8 +58,22 @@ class AgenteParticipantePresupuesto extends Model
             'comite_vigilancia' => $comiteVigilancia,
             'equipo_tecnico'  =>   $equipoTecnico,
             'grado_instruccion' => $gradoInstruccion,
+            'id_form' => $idForm,
             'credencial' =>$pathFile,
+            'created_at' => date('Y-m-d H:i:s') 
         ]);
         return;
+    }
+
+    public static function list(int $itemsPerPage, int $page)
+    {
+        $list = AgenteParticipantePresupuesto::select()
+            ->paginate($itemsPerPage, ['*'], 'page', $page);
+
+        $response = [
+            'data' => $list->items(),
+            'total_items' => $list->total(),
+        ];
+        return $response;
     }
 }

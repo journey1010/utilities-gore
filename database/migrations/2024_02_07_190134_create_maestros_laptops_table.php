@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unsignedBigInteger('laptop_id');
             $table->foreign('laptop_id')->references('id')->on('laptops_data');
             $table->timestamps();
-            
             $table->unique(['maestro_id', 'laptop_id']);
         });
     }

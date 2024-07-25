@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AgentePresupuesto\Store;
+use App\Http\Requests\AgentePresupuesto\StoreCaballococha;
+use App\Http\Requests\AgentePresupuesto\Lists;
 use Illuminate\Http\JsonResponse;
 use App\Models\AgenteParticipantePresupuesto AS AgenteModel;
 
@@ -11,9 +13,21 @@ class AgenteParticipantePresupuesto extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Lists $request): JsonResponse
     {
-        
+        try {   
+            $lista  = AgenteModel::list($request->itemsPerPage, $request->page);
+            return response()->json([
+                'status' => 'success',
+                'data' => $lista['items'],
+                'total' => $lista['total_items']
+            ], 200);
+        } catch(\Exception $e){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error al devolver lista'
+            ], 500);
+        }
     }
 
     public function store(Store $request): JsonResponse
@@ -35,6 +49,7 @@ class AgenteParticipantePresupuesto extends Controller
                 $request->comiteVigilancia,
                 $request->equipoTecnico,
                 $request->gradoInstruccion,
+                $request->idForm,
                 $path
             );
 
@@ -43,15 +58,49 @@ class AgenteParticipantePresupuesto extends Controller
                 'message' => 'Registro Exitoso'
             ], 200);
         } catch (\Throwable $e){
-            
             return response()->json([
                 'status' => 'error',
-                'message' => $e->getMessage()
+                'message' => 'Error al guardar'
             ], 500);
         };
     }
 
-    public function saveFile($file, $dni): string
+    public function storeFormCaballococha(StoreCaballococha $request)
+    {
+        try{
+            $path = $this->saveFile($request->file('credencial'), $request->dni);
+ 
+             AgenteModel::saveAgente(
+                 $request->fullName,
+                 $request->dni,
+                 null,
+                 null,
+                 $request->organizacion,
+                 null,
+                 null,
+                 null,
+                 $request->cargo,
+                 null,
+                 null,
+                 null,
+                 $request->idForm,
+                 $path
+             );
+ 
+             return response()->json([
+                 'status' => 'success',
+                 'message' => 'Registro Exitoso'
+             ], 200);
+ 
+         } catch (\Throwable $e){
+             return response()->json([
+                 'status' => 'error',
+                 'message' => $e->getMessage()
+             ], 500);
+         };
+    }
+
+    protected function saveFile($file, $dni): string
     {   
         $uniqueName = $dni . date('-HmYdis');
         $extension = $file->getClientOriginalExtension();
@@ -60,7 +109,6 @@ class AgenteParticipantePresupuesto extends Controller
             $uniqueName . '.' . $extension,
             'public'
         );
-    
         return $path;
     }
 }

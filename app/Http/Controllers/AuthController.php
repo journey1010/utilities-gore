@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterAuth;
 use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -30,7 +31,33 @@ class AuthController extends Controller
         return response()->json([
             'status' => 'success',
             'token' => $token,
+            'userId' => $user->id,
+            'rol' => $user->rol,
         ], 200);
+    }
+
+    public function register(RegisterAuth $request)
+    {
+      try{
+        User::create([
+            'name' => $request->name,
+            'last_name' =>  $request->lastName,
+            'dni' =>  $request->dni,
+            'email' => $request->email,
+            'rol' =>  $request->rol,
+            'password' => $request->password
+        ]);
+
+        return response()->json([
+          'status' => 'succes',
+          'message' => 'Registrado'
+        ], 200);
+      }catch(\Exception $e){
+        return response()->json([
+          'status' => 'error',
+          'message' => 'Estamos experimentando problemas'
+        ], 500);
+      }
     }
 
     public function refreshToken()

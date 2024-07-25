@@ -7,11 +7,8 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\Validation\Validator;
 
-use App\Rules\isUserActive;
-
-class LoginRequest extends FormRequest
+class RegisterAuth extends FormRequest
 {
-
     protected $stopOnFirstFailure = true;
     /**
      * Determine if the user is authorized to make this request.
@@ -30,7 +27,6 @@ class LoginRequest extends FormRequest
 
         throw new HttpResponseException($jsonResponse);
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -39,18 +35,12 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email', new isUserActive ],
-            'password' => ['required', 'string']
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'email.required' => 'Sin correo tílin no hay pase',
-            'email.email' => 'Correo no valido',
-            'password.required' => 'Sin contraseña',
-            'password.string' => 'Contraseña debe ser de tipo string',
+            'name' => 'required|string',
+            'lastName' => 'required|string',
+            'dni' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'rol' => 'required|string',
+            'password' => 'required', 
         ];
     }
 }
